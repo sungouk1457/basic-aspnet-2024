@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>JS 연습</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        //변수 선언
+        //ECMAScript 6이전에는 변수 선언이 var
+        //let이 기본, var는 지역변수 선언
+        let radius = 10;
+        const pi = 3.14159265;
+
+        //출력
+        let res = 2 * radius * pi;
+        //alert(res);
+
+        //콘솔출력(개발자 로그)
+        console.log(res);
+
+        if(res>100){
+            console.log('원의 둘레는 100보다 큽니다.');
+        }
+        else{
+            console.log('원이 100보다 작습니다.')
+        }
+
+        let date = new Date();
+        let year = date.getFullYear(); //년도
+        let month = date.getMonth()+1; //월
+        let day = date.getDate(); //일 //getDay() 월요일(1) ~ 일요일(7)
+        let hour = date.getHours(); //시
+        let minute = date.getMinutes(); //분
+        let second = date.getSeconds(); //초
+        console.log(date);
+        console.log(year+'-'+month+'-'+day+'-'+hour+'-'+minute+'-'+second);
+        //if문 끝
+
+        //배열변수 선언 == 파이썬과 동일
+        let array = [300.9, false, 'String',[1,2,3],{'key':'value','option':true},function() {alert('Hey');}];
+        console.log(array[0]);
+
+        //let i = 0;
+        // while(i<array.length){
+        //     alert(array[i]);
+        //     i++;
+        // }
+
+        for(var i = 0; i<array.length; i++){
+            console.log(i + '번 출력' + array[i])
+        }
+        //반복문 끝
+
+        //함수 시작
+        //아래의 문법을 어려워하지 말것. 아무것도 아님
+        let fn1 = function(){
+            console.log('함수 fn1 실행');
+            console.log('함수종료');
+        }
+        console.log('변수타입 = ' + typeof(fn1));
+        fn1();
+
+        function fn2(){
+            console.log('함수 fn2 실행');
+            console.log('함수종료');
+        }
+        console.log('변수 = ' + typeof(fn2));
+        fn2();
+
+        //함수 우선순위(Adv tip)
+        var fn = function(){ console.log('fn10')}; //실행x
+        var fn = function(){ console.log('fn20')}; //실행o
+        fn();
+
+        var fm = function(){ console.log('fm10')}; //실행o
+        function fm() {console.log('fm20')}; //실행x
+        fm();
+
+        function ff(x){
+            return x*x;
+        }
+        console.log(ff(10));
+
+        //콜백함수(매개변수에 함수를 할당,전달)
+        function callTenTimes(callback){
+            for(var i = 0; i<5; i++){
+                callback(); //매개변수가 함수
+            } 
+        }
+
+        var callFunc = function(){
+            console.log('콜백호출');
+        };
+        callTenTimes(callFunc);
+
+        //Javascript 객체
+        let product = {
+            품명 : '7D 건조망고',
+            유형 : '당절임 건조과일',
+            성분 : '망고, 설탕, 메타종아황산나트륨, 치자황색소',
+            원산지 : '필리핀',
+            가격 : 2500
+        };
+        console.log(product['품명']); //배열처럼 사용
+        console.log(product.가격); //클래스 속성처럼 사용
+
+        for(var i in product){
+            console.log(i + ' => ' + product[i]);
+        }
+
+        //this
+        let iromman = {
+            name : '토니 스타크',
+            proud : function(item){
+                console.log(this.name + '는 ' + item + '이 많습니다.');
+            }
+        };
+        iromman.proud('돈');
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
