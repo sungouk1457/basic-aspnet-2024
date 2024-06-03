@@ -154,4 +154,30 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 ##4일차
 - HTML + CSS + js(jQuery) 응용
-    - 
+    - jQuery 응용
+        - javascript와 jQuery를 혼용해도 상관없음
+        - jQuery로 코딩편할때와 javascript가 편할때도 있음
+    - BootStrap
+        - 오픈소스 CSS 프레임워크
+        - 트위터 블루프린트 -> 부트스트랩
+        - 현재 전세계에서 가장 각광받는 프레임워크 중 하나
+        - CSS를 동작시키기 위해서 Javascript도 포함
+        - 소스 다운로드 받아서 사용, CDM으로 링크만 사용(2). 2번이 훨씬 편리
+            - 제한된 네트워크에서는 1번
+            - 인터넷이 항상 연결된 환경에서는 2번이 편리
+        - 핵심
+            - Bootstrap은 화면사이즈를 12등분
+                - 12를 넘어서면 디자인이 깨짐
+            - container 밑에 마치 table처럼 div를 구분해서 사용
+            - container > row > col div 태그 클래스 정의
+        - 부트스트랩 학습에 시간을 들이는게 아님. Copyleft가 정석
+            - https://getbootstrap.com/docs/5.3/getting-started/introduction/ 참조
+            - https://getbootstrap.com/docs/5.3/examples/ 스니펫을 활용 추천
+            - 무료 테마(템플릿)가 아주 잘되어 있음
+                - https://startbootstrap.com/
+    - 웹페이지 클로닝
+        - 핀터레스트 타입 웹페이지 만들기(진행중)
+
+## 5일차
+- HTML + CSS + js(jQuery) 응용
+    - 웹페이지 클로닝
