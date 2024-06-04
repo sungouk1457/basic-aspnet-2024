@@ -189,3 +189,5 @@ IoT 개발자과정 ASP.NET 리포지토리
 
         <img src="https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an00001.png" width="730" alt="Cdoehal 로그인창 따라하기">
 
+        - Codehal 슬라이더 애니메이션 웹페이지 튜토리얼 따라하기
+
