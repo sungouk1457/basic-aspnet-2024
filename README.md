@@ -183,10 +183,9 @@ IoT 개발자과정 ASP.NET 리포지토리
     - 웹페이지 클로닝
         - 핀터레스트 타입 + 부트스트랩 웹페이지 만들기(완료)
      
-
-https://github.com/sungouk1457/basic-aspnet-2024/assets/131221230/b2ac5367-7b2f-41c7-8378-b39487038351
+        https://github.com/sungouk1457/basic-aspnet-2024/assets/131221230/b2ac5367-7b2f-41c7-8378-b39487038351
 
         - Codehal 유튜버 로그인 웹페이지 튜토리얼 따라하기
 
-        <img src="" width="800>
+        <img src="https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an00001.png" width="730" alt="Cdoehal 로그인창 따라하기">
 
