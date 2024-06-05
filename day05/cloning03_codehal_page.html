@@ -5,12 +5,19 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Slider Animated</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--CSS-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
         *{
             margin: 0; padding: 0;
             box-sizing: border-box;
             font-family: "Ubuntu", sans-serif;
+        }
+        body{
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
         .header{
             position: fixed;
@@ -64,14 +71,48 @@
         }
         .bg-slide .cirlce.small{
             clip-path: circle(30% at 50% 50%);
-            z-index: 12;
         }
         .bg-slide .cirlce img{
             object-fit: cover;
             transform: rotate(0deg) scale(2);
+            opacity: 0;
+            transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+                        opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .bg-slide.active .cirlce img{
+            transform: rotate(360deg) scale(2);
+            opacity: 1;
+        }
+        /*한슬라이드당 이미지 3개, 그중 bg클래스만 딜레이*/
+        .bg-slide.active .cirlce.bg img,
+        .bg-slide.after-active .cirlce.bg img{
+            transition-delay: 0.8s;
+        }
+        .bg-slide.active .cirlce.large img,
+        .bg-slide.after-active .cirlce.large img{
+            transition-delay: 0.6s;
+        }
+        .bg-slide.active .cirlce.small img,
+        .bg-slide.after-active .cirlce.small img{
+            transition-delay: 0.3s;
+        }
+        .bg-slide.after-active .cirlce img{
+            transform: rotate(720deg) scale(4);
+            opacity: 0;
         }
         .circle-darktransp{
             background-color:rgba(0, 0, 0, 0.1);
+            z-index: 11;
+        }
+        /*다섯개중 active인것들만 화면 표시*/
+        .bg-slide.active .cirlce{/*다섯개 이미지영역에서 active가 되는 것을 가장위로*/
+            z-index: 10;
+        }
+        .bg-slide.active .cirlce.small{
+            z-index: 12;
+        }
+        .bg-slide.active .content-text{
+            z-index: 101;
         }
         .bg-slide .content-text{
             position: absolute;
@@ -80,22 +121,86 @@
             flex-direction: column;
             align-items: center;
         }
+
+        .content-text .place,
+        .content-text .country{
+            /* background-color: darkgreen; */
+            overflow: hidden;
+        }
+
         .content-text .place h1,
         .content-text .country h2{
             color: white;
             text-transform: uppercase;
+            line-height: 1;
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.3s;
         }
+        .bg-slide.active .content-text .place h1,
+        .bg-slide.active .content-text .country h2{
+            transform: translateY(0%);
+            opacity: 1; /*투명도 없이*/
+        }
+
+        .bg-slide.after-active .content-text .place h1{
+            transform: translateY(-100%);
+            opacity: 1;
+        }
+
+        .bg-slide.after-active .content-text .place h2{
+            transform: translateY(100%);
+            opacity: 1;
+        }
+
         .content-text .place h1{
             font-size: 60px;
             letter-spacing: 80px;
             margin-right: -80px;
-            background-color: salmon;
+            transform : translateY(100%); /* 위로 */
+            /* background-color: salmon; */
         }
         .content-text .country h2{
             font-size: 50px;
             letter-spacing: 30px;
             margin-right: -30px;
-            background-color: seagreen;
+            transform : translateY(-100%); /* 아래로 */
+            /* background-color: seagreen; */
+        }
+        .content-text .country{
+            margin-top: 60px;
+        }
+        .line{
+            position: absolute;
+            left: 50%; 
+            top: 50.5%;
+            z-index: 100;
+            transform: translateX(-50%);
+            width: 500px; height: 2px;
+            background-color: white;
+        }
+        .rotate-btn{
+            position: absolute;
+            bottom: 50px; right: 50px;
+            width: 60px; height: 60px;
+            background-color: #aba72c;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+            display: flex;
+            justify-content: center; /*가로 중앙정렬*/
+            align-items: center; /*세로 중앙정렬*/
+        }
+        .rotate-btn.active{
+            transform: rotate(360deg);
+            pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.1s;
+        }
+        .rotate-btn i{
+            font-size: 40px;
+            color: white;
         }
     </style>
     <!--jQuery CDN-->
@@ -120,7 +225,7 @@
     </div>
     
     <div class="container">
-        <div class="bg-slide">
+        <div class="bg-slide active">
             <div class="cirlce bg">
                 <img src="./images/img1.jpg">
             </div>
@@ -139,10 +244,96 @@
                 </div>
             </div>
         </div>
-        <div class="circle-darktransp"></div>
-    </div>
-    <script>
 
+        <div class="bg-slide">
+            <div class="cirlce bg">
+                <img src="./images/img2.jpg">
+            </div>
+            <div class="cirlce large">
+                <img src="./images/img2.jpg">
+            </div>
+            <div class="cirlce small">
+                <img src="./images/img2.jpg">
+            </div>
+            <div class="content-text">
+                <div class="place">
+                    <h1>denali</h1>
+                </div>
+                <div class="country">
+                    <h2>usa</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slide">
+            <div class="cirlce bg">
+                <img src="./images/img3.jpg">
+            </div>
+            <div class="cirlce large">
+                <img src="./images/img3.jpg">
+            </div>
+            <div class="cirlce small">
+                <img src="./images/img3.jpg">
+            </div>
+            <div class="content-text">
+                <div class="place">
+                    <h1>sahara</h1>
+                </div>
+                <div class="country">
+                    <h2>africa</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slide">
+            <div class="cirlce bg">
+                <img src="./images/img4.jpg">
+            </div>
+            <div class="cirlce large">
+                <img src="./images/img4.jpg">
+            </div>
+            <div class="cirlce small">
+                <img src="./images/img4.jpg">
+            </div>
+            <div class="content-text">
+                <div class="place">
+                    <h1>sindoro</h1>
+                </div>
+                <div class="country">
+                    <h2>indoensia</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slide">
+            <div class="cirlce bg">
+                <img src="./images/img5.jpg">
+            </div>
+            <div class="cirlce large">
+                <img src="./images/img5.jpg">
+            </div>
+            <div class="cirlce small">
+                <img src="./images/img5.jpg">
+            </div>
+            <div class="content-text">
+                <div class="place">
+                    <h1>marmolada</h1>
+                </div>
+                <div class="country">
+                    <h2>italy</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="circle-darktransp"></div>
+
+        <span class="line"></span>
+
+        <span class="rotate-btn">
+            <i class='bx bx-rotate-right'></i>
+        </span>
+    </div>
+    <script src="./JS/sub.js">   
     </script>
 </body>
 </html>
