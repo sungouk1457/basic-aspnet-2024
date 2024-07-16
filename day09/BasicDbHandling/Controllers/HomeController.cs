@@ -1,8 +1,8 @@
-using BasicDbHandling.Models;
+using basicDbHandling.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BasicDbHandling.Controllers
+namespace basicDbHandling.Controllers
 {
     public class HomeController : Controller
     {

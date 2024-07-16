@@ -1,4 +1,4 @@
-namespace BasicDbHandling.Models
+namespace basicDbHandling.Models
 {
     public class ErrorViewModel
     {
