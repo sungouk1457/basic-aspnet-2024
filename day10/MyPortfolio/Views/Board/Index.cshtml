@@ -1,0 +1,95 @@
+﻿@model IEnumerable<MyPortfolio.Models.Board>
+
+@{
+    ViewData["Title"] = "Board";
+}
+<style>
+    /*마우스가 없을땐 밑줄없이*/
+    a {
+        color: black;
+        text-decoration: none;
+    }
+        /*마우스가 올라갔을때만 밑줄*/
+    a:hover {
+        //color: var(--bs-link-hover-color);
+        text-decoration: underline;
+    }
+</style>
+
+<section class="py-5">
+    <div class="container py-5">
+        <p class="px-1">
+            <a asp-asp-controller="Board" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-file-earmark-plus-fill"></i>&nbsp;글 작성
+             </a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr class="table-primary">
+                    <th style="width:8rem">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th style ="width:8rem">
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </th>
+                    <th style ="width:17rem">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    @* <th>
+                        @Html.DisplayNameFor(model => model.Contents)
+                    </th> *@
+                    <th style="width:6rem">
+                        @Html.DisplayNameFor(model => model.Hit)
+                    </th>
+                    <th style="width:7rem">
+                        @Html.DisplayNameFor(model => model.RegDate)
+                    </th>
+                    <th style="width:7rem">
+                        @Html.DisplayNameFor(model => model.ModDate)
+                    </th>
+                    @* <th></th> *@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            <a asp-controller="Board" asp-action="Details" asp-route-id="@item.Id">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </a>
+                        </td>
+                      @*   <td>
+                            @Html.DisplayFor(modelItem => item.Contents)
+                        </td> *@
+                        <td class="text-end pe-5">
+                            @Html.DisplayFor(modelItem => item.Hit)
+                        </td>
+                        <td>
+                            @* @Html.DisplayFor(modelItem => item.RegDate) *@
+                            @Convert.ToDateTime(item.RegDate).ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            @* @Html.DisplayFor(modelItem => item.ModDate) *@
+                            @if(item.ModDate != null)
+                            {
+                                @Convert.ToDateTime(item.ModDate).ToString("yyyy-MM-dd")
+                            }
+                        </td>
+                        @* <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td> *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

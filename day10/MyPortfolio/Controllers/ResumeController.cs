@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace myPortfolio.Controllers
+namespace MyPortfolio.Controllers
 {
     public class ResumeController : Controller
     {

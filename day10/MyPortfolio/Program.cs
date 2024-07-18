@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using myPortfolio.Data;
+using MyPortfolio.Data;
 
-namespace myPortfolio
+namespace MyPortfolio
 {
     public class Program
     {
@@ -11,11 +11,10 @@ namespace myPortfolio
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            builder.Services.AddControllersWithViews();
+            // DbContext 종속성 주입
             builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
-            builder.Configuration.GetConnectionString("MyConnection")
-            ));
+                builder.Configuration.GetConnectionString("MyConnection")
+                ));
 
             var app = builder.Build();
 
@@ -37,7 +36,7 @@ namespace myPortfolio
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            //URL패턴 : https://localhost:port/controller이름/action이름/[id]
+                // URL패턴 : https://localhost:port/controller이름/action이름/[id](옵션)
 
             app.Run();
         }

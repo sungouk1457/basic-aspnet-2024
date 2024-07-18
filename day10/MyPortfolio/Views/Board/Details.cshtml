@@ -1,0 +1,51 @@
+﻿@model MyPortfolio.Models.Board
+
+@{
+    ViewData["Title"] = "Board";
+}
+
+<section class="py-5">
+    <div class="container py-5">
+        <div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>@Html.DisplayFor(model => model.Title)</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr />
+                </div>
+            </div>
+            <div class="row px-2">
+                <div class="col-sm-3">@Html.DisplayFor(model => model.UserId) (@Html.DisplayFor(model => model.Name))</div>
+                <div class="col-sm-9 text-end">
+                    @Html.DisplayFor(model => model.RegDate) 작성<br/>
+                    @Html.DisplayFor(model => model.ModDate) 최종수정
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr />
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col" style="min-height:200px">
+                    @Html.DisplayFor(model => model.Contents)
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-controller="Board" asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+                <i class="bi bi-file-earmark-check-fill pe-1"></i>글 수정
+            </a>
+            <a asp-controller="Board" asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">
+                <i class="bi bi-file-earmark-excel-fill pe-1"></i>
+                글 삭제
+            </a>
+            <a asp-controller="Board" asp-action="Index" class="btn btn-success">
+                <i class="bi bi-file-earmark-text-fill pe-1"></i>목록
+            </a>
+        </div>
+    </div>
+</section>

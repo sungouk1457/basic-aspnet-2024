@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace myPortfolio.Migrations
+namespace MyPortfolio.Migrations
 {
     /// <inheritdoc />
     public partial class BoardToDb : Migration
@@ -12,7 +12,7 @@ namespace myPortfolio.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Boards",
+                name: "Board",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -23,11 +23,11 @@ namespace myPortfolio.Migrations
                     Contents = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Hit = table.Column<int>(type: "int", nullable: false),
                     RegDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModeDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ModDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Boards", x => x.Id);
+                    table.PrimaryKey("PK_Board", x => x.Id);
                 });
         }
 
@@ -35,7 +35,7 @@ namespace myPortfolio.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Boards");
+                name: "Board");
         }
     }
 }

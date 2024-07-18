@@ -256,7 +256,7 @@ IoT 개발자과정 ASP.NET 리포지토리
         - Java 계열도 Spring (Boot) MVC로 개발
         - MVC 개념도
 
-            <img src="https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0002.png" width="730">
+            <img src="https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an0002.png" width="730">
 
         - 프론트엔드가 예전엔 스파게티코드가 무지 심했다면, 현재는 스파게티코드가 최소화 되어있음.(SpringBoot, Python flask든 모두 동일)
         - IIS Express Server - VS에서 ASP.NET 웹사이트를 운영하는 개발용 웹서버
@@ -335,16 +335,37 @@ IoT 개발자과정 ASP.NET 리포지토리
     23. /Controller/BoardController.cs를 생성(모델,뷰 연결)
          - Entity Framework를 사용하며 뷰가 포함된 MVC컨트롤러
 
-    <img src="https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0004.png" width="500">
+    <img src="https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an0004.png" width="500">
 
 ## 10일차
 - ASP.NET Core 웹사이트, MyPortfolio
     1. Board.cs 멤버속성 ModeDate -> ModDate
-    2. 테이블 삭제, 재생성
-    3. 게시판 관련된 화면 수정작업
-    4. 페이징,
-    5. 회원가입, 로그인...
-    6. 관리자모드/페이지
+        - BoardController.cs에서 ModeDate -> ModDate 변경
+        - Views/Board/*.cshtml에서 ModeDate -> ModDate 변경
+    2. ASP.NET Core 템플릿으로 만들어주는 CRUD(Insert, Select, Update, Delete)
+    3. 테이블 삭제, 재생성
+    4. 게시판 관련된 화면 수정작업
+        - Views/Board/Index.cshtml 게시판 리스트화면 수정
+        - Index.cshtml 테이블틀 변경, 삭제, 수정, 상세버튼 삭제
+        - Models/Board.cs에 테이블 한글이름 추가 DisplayName()
+        - Views/Board/Details.cshtml 부트스트랩 적용
+        - 수정, 삭제 등 버튼 디자인적용
+        - Views/Board/Create.cshtml 부트스트랩 적용
+    5. SSMS에서 Board테이블 Hit,RegDate,ModDate Null허용으로 변경
+    6. 웹사이트 동작순서
+        1. https://localhost:7154/Board/Create 링크를 오픈
+        2. BoardController -> Create 액션메서드 발동
+        3. Sumbit -> BoardController -> Create 액션메서드 발동
+        4. Create 액션 메서드 내 로직처리 DB에 데이터 입력
+        5. Models/Board.cs ModDate를  DateTime -> DateTime? 변경
+        6. Edit 동일, Create.cshtml 내용을 그대로 복사/붙여넣기 단, asp-action="Edit"로 변경
+
+## 11일차(07.23)
+- ASP.NET Core 웹사이트, MyPortfolio
+    1. 게시글 삭제
+    5. 페이징,
+    6. 회원가입, 로그인...
+    7. 관리자모드/페이지
 
 
     

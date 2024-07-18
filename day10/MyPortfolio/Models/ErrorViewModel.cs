@@ -1,4 +1,4 @@
-namespace myPortfolio.Models
+namespace MyPortfolio.Models
 {
     public class ErrorViewModel
     {

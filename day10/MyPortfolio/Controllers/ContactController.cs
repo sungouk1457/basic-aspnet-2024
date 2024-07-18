@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace myPortfolio.Controllers
+namespace MyPortfolio.Controllers
 {
     public class ContactController : Controller
     {
@@ -10,6 +10,5 @@ namespace myPortfolio.Controllers
         {
             return View();
         }
-
-    }    
+    }
 }
