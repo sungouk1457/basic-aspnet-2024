@@ -188,13 +188,13 @@ IoT 개발자과정 ASP.NET 리포지토리
     - 웹페이지 클로닝
         - 핀터레스트 타입 + 부트스트랩 웹페이지 만들기(완료)
      
-          https://github.com/hugoMGSung/basic-aspnet-2024/assets/59336331/643a9b13-c062-49a6-a712-aadfc4c7b292
+          https://github.com/sungouk1457/basic-aspnet-2024/assets/59336331/643a9b13-c062-49a6-a712-aadfc4c7b292
 
         - Codehal 유튜버 로그인 웹페이지 튜토리얼 따라하기
 
-          <img src="https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0001.png" width="730" alt="Codehal 로그인창 따라하기">
+          <img src="https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an0001.png" width="730" alt="Codehal 로그인창 따라하기">
 
-          <!-- ![이미지](https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0001.png) -->
+          <!-- ![이미지](https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an0001.png) -->
 
         - Codehal 슬라이더 애니메이션 웹페이지 튜토리얼 따라하기
 
@@ -203,11 +203,11 @@ IoT 개발자과정 ASP.NET 리포지토리
     - 웹페이지 클로닝
         - Codehal 슬라이더 애니메이션 웹페이지 튜토리얼 따라하기 (완료)
 
-          https://github.com/hugoMGSung/basic-aspnet-2024/assets/59336331/e5888f6d-ad0b-406e-bcb8-0425ef354edd
+          https://github.com/sungouk1457/basic-aspnet-2024/assets/59336331/e5888f6d-ad0b-406e-bcb8-0425ef354edd
 
         - 자동 슬라이드버튼 기능 추가
 
-          https://github.com/hugoMGSung/basic-aspnet-2024/assets/59336331/2ecb5cdc-dd29-49a4-ad66-31f6174fa4c7
+          https://github.com/sungouk1457/basic-aspnet-2024/assets/59336331/2ecb5cdc-dd29-49a4-ad66-31f6174fa4c7
     
 - 개인 웹페이지 클로닝
 
@@ -362,10 +362,56 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 ## 11일차(07.23)
 - ASP.NET Core 웹사이트, MyPortfolio
-    1. 게시글 삭제
-    5. 페이징,
-    6. 회원가입, 로그인...
-    7. 관리자모드/페이지
+    0. EntityFramework로 SQL 사용없이 DB 핸들링
+        - DBContext.Add(삽입), Update(수정), Remove(삭제) 기능 존재
+        - 위의 명령을 실행 후 DBContext.SaveChangesAsync() 실행해서 실제 DB에 반영
+        - ToListAsync(), FirstOrDefaultAsync()는 SELECT로 트랜잭션이 발생x. 그래서 SaveChangesAsync()를 실행x
+    1. 글 조회수 올리기
+    2. 게시글 삭제
+        - _layout.cshtml의 @await RenderSectionAsync("Scripts", required: false)이 각 페이지에 필요시 스크립트영역을 만들어써라는 의미
+        - AJAX 삭제는 나중에 다시
+    3. 페이징
+        - 웹사이트에서 가장 중요한 기능 중 하나
+        - 한 페이지에 표시할 수 있는 글의 수를 제한
+        - 스크롤 페이징, 번호 페이지
+        - 번호 페이징
+            1. BoardController.cs Index() 액션메서드 내 FromSql()로 변경(비동기 적용 안됨, 비동기 부분 제거)
+            2. 페이징용 쿼리 작성
+            ```sql
+            SELECT *
+              FROM (
+                   SELECT ROW_NUMBER() OVER (ORDER BY Id DESC) AS rowNum
+                        , Id
+                        , Name
+                        , UserId
+                        , Title
+                        , Contents
+                        , Hit
+                        , RegDate
+                        , ModDate
+                     FROM Board
+                   ) AS base
+             WHERE base.rowNum BETWEEN 1 AND 10 --1과 10에 10씩 더하면 다음 페이지를 조회 쿼리
+            ```
+            3. Index() 내 로직 수정
+            4. Views/Board/Index.cshtml 화면코드 수정
+    4. 검색
+        - FromSqlRaw() 메서드 변경
+        - Html 링크에 ?page=1%search=검색어 추가
+    5. HTML 에디터
+        - Markdown 에디터
+        - simplemde(https://simplemde.com)
+        - _layout.cshtml에 js,css 링크만 추가
+        - 실제 사용페이지에서 특정 js만 실행
+        - Create.cshtml, Edit.cshtml
+        - NuGet패키지 Westwind.AspNetCore.Markdown 검색
+        <img src="https://raw.githubusercontent.com/sungouk1457/basic-aspnet-2024/main/images/an0006.png" width="500">
+
+## 12일차
+- ASP.NET Core 웹사이트, MyPortfolio
+    0. 삭제로직 수정
+    1. 회원가입, 로그인...
+    2. 관리자모드/페이지
 
 
     
