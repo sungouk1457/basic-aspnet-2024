@@ -362,15 +362,15 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 ## 11일차(07.23)
 - ASP.NET Core 웹사이트, MyPortfolio
-    0. EntityFramework로 SQL 사용없이 DB 핸들링
+    1. EntityFramework로 SQL 사용없이 DB 핸들링
         - DBContext.Add(삽입), Update(수정), Remove(삭제) 기능 존재
         - 위의 명령을 실행 후 DBContext.SaveChangesAsync() 실행해서 실제 DB에 반영
         - ToListAsync(), FirstOrDefaultAsync()는 SELECT로 트랜잭션이 발생x. 그래서 SaveChangesAsync()를 실행x
-    1. 글 조회수 올리기
-    2. 게시글 삭제
+    2. 글 조회수 올리기
+    3. 게시글 삭제
         - _layout.cshtml의 @await RenderSectionAsync("Scripts", required: false)이 각 페이지에 필요시 스크립트영역을 만들어써라는 의미
         - AJAX 삭제는 나중에 다시
-    3. 페이징
+    4. 페이징
         - 웹사이트에서 가장 중요한 기능 중 하나
         - 한 페이지에 표시할 수 있는 글의 수를 제한
         - 스크롤 페이징, 번호 페이지
@@ -395,7 +395,7 @@ IoT 개발자과정 ASP.NET 리포지토리
             ```
             3. Index() 내 로직 수정
             4. Views/Board/Index.cshtml 화면코드 수정
-    4. 검색
+    5. 검색
         - FromSqlRaw() 메서드 변경
         - Html 링크에 ?page=1%search=검색어 추가
       
@@ -404,7 +404,7 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 
           
-    5. HTML 에디터
+    6. HTML 에디터
         - Markdown 에디터
         - simplemde(https://simplemde.com)
         - _layout.cshtml에 js,css 링크만 추가
@@ -415,9 +415,9 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 ## 12일차
 - ASP.NET Core 웹사이트, MyPortfolio
-    0. 삭제로직 수정
-    1. 회원가입, 로그인...
-    2. 관리자모드/페이지
+    1. 삭제로직 수정
+    2. 회원가입, 로그인...
+    3. 관리자모드/페이지
 
 
     
