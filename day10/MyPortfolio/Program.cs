@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyPortfolio.Data;
-using Westwind.AspNetCore.Markdown; //마크다운 패키지 추가
+using Westwind.AspNetCore.Markdown; // 마크다운 패키지 추가
 
 namespace MyPortfolio
 {
@@ -9,7 +9,7 @@ namespace MyPortfolio
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             // DbContext 종속성 주입
@@ -17,12 +17,13 @@ namespace MyPortfolio
                 builder.Configuration.GetConnectionString("MyConnection")
                 ));
 
-            //로그인 세션 설정
-            builder.Services.AddSession(option => {
-                option.Cookie.Name = "ASPNETPortfolioSession"; //웹앱 세션 쿠키이름
-                option.IdleTimeout = TimeSpan.FromMinutes(20); //세션 지속시간 20~30분이 적당
-            }).AddControllersWithViews(); //세션의 내용을 cshtml에도 적용한다
+            // 로그인 세션 설정
+            builder.Services.AddSession(options => {
+                options.Cookie.Name = "ASPNETPortfolioSession"; // 웹앱 세션 쿠키이름, 경고!! 공백X ASPNET Portfolio 
+                options.IdleTimeout = TimeSpan.FromMinutes(20); // 세션 지속시간 20~30분이 적당
+            }).AddControllersWithViews(); // 세션의 내용을 cshtml에도 적용한다
 
+            // MarkDown 관련 설정
             builder.Services.AddMarkdown();
             builder.Services.AddMvc().AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
 
@@ -36,13 +37,12 @@ namespace MyPortfolio
                 app.UseHsts();
             }
 
-            app.UseMarkdown(); //마크다운 사용설정
+            app.UseMarkdown(); // 마크다운 사용설정
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseSession(); //세션 사용
-
+            app.UseSession(); // 세션사용!
             app.UseAuthorization();
 
             app.MapControllerRoute(
