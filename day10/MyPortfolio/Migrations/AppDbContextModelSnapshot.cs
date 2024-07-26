@@ -75,7 +75,6 @@ namespace MyPortfolio.Migrations
                         .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("FilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectName")
